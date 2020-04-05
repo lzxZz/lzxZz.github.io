@@ -13,17 +13,18 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 
 <!-- Begin Jekyll SEO tag v2.6.1 -->
-<title>2020sum | Simple Texture</title>
+<title>第一篇博客 | lzxZz&#39;s Blog</title>
 <meta name="generator" content="Jekyll v4.0.0" />
-<meta property="og:title" content="2020sum" />
+<meta property="og:title" content="第一篇博客" />
+<meta name="author" content="lzxZz" />
 <meta property="og:locale" content="zh" />
 <meta name="description" content="The first &#39;Hello world&#39; post for Simple Texture theme." />
 <meta property="og:description" content="The first &#39;Hello world&#39; post for Simple Texture theme." />
-<meta property="og:site_name" content="Simple Texture" />
+<meta property="og:site_name" content="lzxZz&#39;s Blog" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2020-04-04T00:00:00+08:00" />
 <script type="application/ld+json">
-{"description":"The first &#39;Hello world&#39; post for Simple Texture theme.","@type":"BlogPosting","url":"/blog/2020/04/04/2020sum/","headline":"2020sum","dateModified":"2020-04-04T00:00:00+08:00","datePublished":"2020-04-04T00:00:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"/blog/2020/04/04/2020sum/"},"@context":"https://schema.org"}</script>
+{"description":"The first &#39;Hello world&#39; post for Simple Texture theme.","author":{"@type":"Person","name":"lzxZz"},"@type":"BlogPosting","url":"/blog/2020/04/04/first/","headline":"第一篇博客","dateModified":"2020-04-04T00:00:00+08:00","datePublished":"2020-04-04T00:00:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"/blog/2020/04/04/first/"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 <meta name="keywords" content="" />
@@ -32,7 +33,7 @@
 
 
 
-<link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Simple Texture" />
+<link type="application/atom+xml" rel="alternate" href="/feed.xml" title="lzxZz's Blog" />
     <link href='/assets/stylesheets/blog.css' rel="stylesheet" type="text/css">
     <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
 <script>window.Modernizr || document.write('<script src="/assets/javascripts/modernizr-2.8.3.min.js"><\/script>')</script>
@@ -91,7 +92,7 @@
                 <ul>
                     <li class="logo nav-link">
                         <button class="btn-menu" title="菜单"></button>
-                        <a href="/blog/">Simple Texture</a>
+                        <a href="/blog/">lzxZz's Blog</a>
                         <!--[if !IE]> -->
                         <button class="btn-search" title="搜索"></button>
                         <!-- <![endif]-->
@@ -118,7 +119,7 @@
             <header>
                 <div class="unit-head">
                     <div class="unit-inner unit-head-inner">
-                        <h1 class="entry-title" itemprop="name">2020sum</h1>
+                        <h1 class="entry-title" itemprop="name">第一篇博客</h1>
                     </div>
                 </div>
             </header>
@@ -132,9 +133,14 @@
                             by
                             <a class="author" href="/" rel="author" title="显示作者">
                                 <span itemprop="author" itemscope itemtype="http://schema.org/Person">
-                                    <span itemprop="name"></span>
+                                    <span itemprop="name">lzxZz</span>
                                 </span>
                             </a>
+
+
+
+                           
+
                             
                                 <a class="license-icon" rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank" title="显示许可证">
                                     <img alt="Creative Commons Licence" style="border-width:0" src="/assets/images/theme/cc-by-sa.png"  height="16" width="80"/>
@@ -145,6 +151,11 @@
                         <ul class="list-category list-linear">
                             <li class="list-head">文章分类: </li>
                              
+     
+        <li>
+            <a href="/blog/categories/#other" title="other">
+            other <span>1</span></a>
+        </li>
     
 
 
@@ -159,9 +170,29 @@
 
 
                         </ul>
+                        <span>
+                            本文共有
+                            236
+                            字
+                        </span>
                     </div>
+
+                
+                
                     <div itemprop="articleBody">
-                        <p>202020总结</p>
+                        <p>自打上次要在简书写博客已经过去了半年了, 期间是基本上啥都没有写. 时隔半年,最终还是使用jekyll+githubpages搭建起来了博客. 使用的这个主题也还可以, 满足了我的几大要求:</p>
+<ol>
+  <li>按时间归类</li>
+  <li>支持分类和标签</li>
+  <li>支持搜索</li>
+  <li>支持发布时间,</li>
+  <li>支持最后修改时间, 使用<code class="highlighter-rouge">laset_updated</code>字段指定日期即可</li>
+</ol>
+
+<p>接下来研究一下能不能仿照目前的分类, 做出来一个系列来. 某些文章单独的使用分类划分还是不太合适, 使用一個系列会比较好.</p>
+
+<p>今天还弄好了基于<code class="highlighter-rouge">rake</code>的新文章创建工具, 还做了一点小小的修改.</p>
+
 
                     </div>
                 </div>
@@ -174,8 +205,8 @@
                     </div>
                     <nav class="pagination">
                         
-                            <a class="internal" rel="prev" href="/blog/2020/04/01/2020/" title="上一篇 '2020总结'"> ← 2020总结</a>
                         
+                            <a class="internal" rel="next" href="/blog/2020/04/04/habit/" title="下一篇 '习惯'">习惯 → </a>
                         
                     </nav>
                 </div>
@@ -198,10 +229,11 @@
                 <div class="about">
                     <h4><a href="/">关于</a></h4>
                     
-                        <p>A gem-based responsive simple texture styled <a href="http://jekyllrb.com/">Jekyll</a> theme.</p>
+                        <p>野兽屈服于本能, 人类受控于理智<br>Beasts succumb to instinct, humans are controlled by mind</p>
                     
                     <p><small>本博客主题 <a href="https://github.com/yizeng/jekyll-theme-simple-texture" target="_blank">Simple Texture</a> 由 <a href="https://yizeng.me" target="_blank">Yi Zeng</a> 基于 <a href="https://jekyllrb.com/" target="_blank">Jekyll</a> 开发.</small></p>
                 </div>
+                
                 <div class="social-links">
                     
                     <a class="ico-rss" href="/feed.xml" rel="me" target="_blank" title="feed"></a>
@@ -209,7 +241,7 @@
                         
                     
                         
-                            <a class="ico-github" href="https://github.com/yizeng/jekyll-theme-simple-texture" rel="me" target="_blank" title="github"></a>
+                            <a class="ico-github" href="https://github.com/lzxZz" rel="me" target="_blank" title="github"></a>
                         
                     
                         
