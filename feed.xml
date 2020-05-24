@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh"><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" hreflang="zh" /><updated>2020-05-25T06:00:20+08:00</updated><id>/feed.xml</id><title type="html">lzxZz's Blog</title><subtitle>野兽屈服于本能, 人类受控于理智&amp;nbsp;&amp;nbsp;&amp;nbsp;Beasts succumb to instinct, humans are controlled by mind</subtitle><author><name>lzxZz</name></author><entry><title type="html">java字符串构造</title><link href="/blog/2020/05/25/java-string-constructor/" rel="alternate" type="text/html" title="java字符串构造" /><published>2020-05-25T00:00:00+08:00</published><updated>2020-05-25T00:00:00+08:00</updated><id>/blog/2020/05/25/java-string-constructor</id><content type="html" xml:base="/blog/2020/05/25/java-string-constructor/">&lt;blockquote&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh"><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" hreflang="zh" /><updated>2020-05-25T06:01:07+08:00</updated><id>/feed.xml</id><title type="html">lzxZz's Blog</title><subtitle>野兽屈服于本能, 人类受控于理智&amp;nbsp;&amp;nbsp;&amp;nbsp;Beasts succumb to instinct, humans are controlled by mind</subtitle><author><name>lzxZz</name></author><entry><title type="html">java字符串构造</title><link href="/blog/2020/05/25/java-string-constructor/" rel="alternate" type="text/html" title="java字符串构造" /><published>2020-05-25T00:00:00+08:00</published><updated>2020-05-25T00:00:00+08:00</updated><id>/blog/2020/05/25/java-string-constructor</id><content type="html" xml:base="/blog/2020/05/25/java-string-constructor/">&lt;blockquote&gt;
   &lt;p&gt;介绍, 本文内容详细讲解了一道面试题&lt;/p&gt;
 &lt;/blockquote&gt;
 
@@ -435,7 +435,15 @@ spring boot的自动配置只是为一些配置项提供了常见的值, 并没�
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;至此, 使用spring boot开发一个项目的内容就全部结束了&lt;/p&gt;</content><author><name>lzxZz</name></author><category term="[&quot;spring boot&quot;]" /><category term="spring boot" /><category term="教程" /><category term="java" /><category term="jawa" /><summary type="html">为什么需要spring boot</summary></entry><entry><title type="html">spring boot系列目录</title><link href="/blog/2020/05/16/spring-boot-overview/" rel="alternate" type="text/html" title="spring boot系列目录" /><published>2020-05-16T00:00:00+08:00</published><updated>2020-05-16T00:00:00+08:00</updated><id>/blog/2020/05/16/spring-boot-overview</id><content type="html" xml:base="/blog/2020/05/16/spring-boot-overview/">&lt;blockquote&gt;
+&lt;p&gt;至此, 使用spring boot开发一个项目的内容就全部结束了&lt;/p&gt;</content><author><name>lzxZz</name></author><category term="[&quot;spring boot&quot;]" /><category term="spring boot" /><category term="教程" /><category term="java" /><category term="jawa" /><summary type="html">为什么需要spring boot</summary></entry><entry><title type="html">Spring Boot Overview</title><link href="/blog/2020/05/16/spring-boot-overview/" rel="alternate" type="text/html" title="Spring Boot Overview" /><published>2020-05-16T00:00:00+08:00</published><updated>2020-05-16T00:00:00+08:00</updated><id>/blog/2020/05/16/spring-boot-overview</id><content type="html" xml:base="/blog/2020/05/16/spring-boot-overview/">&lt;p&gt;`—
+layout: post
+title: &quot;spring boot系列目录&quot;
+description: &quot;The first 'Hello world' post for Simple Texture theme.&quot;
+category: ['spring boot']
+tags: ['spring boot', '教程', '目录', 'java', 'jawa']
+—&lt;/p&gt;
+
+&lt;blockquote&gt;
   &lt;p&gt;说明: 这是一份自学spring boot所产出的教程, 现给出目录.&lt;/p&gt;
 &lt;/blockquote&gt;
 
@@ -488,7 +496,7 @@ spring boot的自动配置只是为一些配置项提供了常见的值, 并没�
   &lt;p&gt;本章介绍一些零零碎碎, 不成系统的知识点.&lt;/p&gt;
   &lt;h2 id=&quot;heading-71-spring-boot中的日志系统&quot;&gt;7.1 spring boot中的日志系统&lt;/h2&gt;
   &lt;h2 id=&quot;heading-72-spring-boot中的自动配置&quot;&gt;7.2 spring boot中的自动配置&lt;/h2&gt;
-&lt;/blockquote&gt;</content><author><name>lzxZz</name></author><category term="[&quot;spring boot&quot;]" /><category term="spring boot" /><category term="教程" /><category term="目录" /><category term="java" /><category term="jawa" /><summary type="html">说明: 这是一份自学spring boot所产出的教程, 现给出目录.</summary></entry><entry><title type="html">lzxZz的时间管理秘籍</title><link href="/blog/2020/05/04/time-manager/" rel="alternate" type="text/html" title="lzxZz的时间管理秘籍" /><published>2020-05-04T00:00:00+08:00</published><updated>2020-05-04T00:00:00+08:00</updated><id>/blog/2020/05/04/time-manager</id><content type="html" xml:base="/blog/2020/05/04/time-manager/">&lt;blockquote&gt;
+&lt;/blockquote&gt;</content><author><name>lzxZz</name></author><summary type="html">`— layout: post title: &quot;spring boot系列目录&quot; description: &quot;The first 'Hello world' post for Simple Texture theme.&quot; category: ['spring boot'] tags: ['spring boot', '教程', '目录', 'java', 'jawa'] —</summary></entry><entry><title type="html">lzxZz的时间管理秘籍</title><link href="/blog/2020/05/04/time-manager/" rel="alternate" type="text/html" title="lzxZz的时间管理秘籍" /><published>2020-05-04T00:00:00+08:00</published><updated>2020-05-04T00:00:00+08:00</updated><id>/blog/2020/05/04/time-manager</id><content type="html" xml:base="/blog/2020/05/04/time-manager/">&lt;blockquote&gt;
   &lt;p&gt;最近罗志祥的&quot;时间管理&quot;有一点火, 还获得了时间刺客的称号. 关于如何充分利用上这24小时, 我也有一点点心得体会.&lt;/p&gt;
 
   &lt;p&gt;先直接介绍方法吧, 方法很简单就一个字&lt;strong&gt;熬&lt;/strong&gt;, 硬熬, 困的时候熬一会, 困意很快就会过去. 实在顶不住的时候就睡觉. 只睡3-5小时左右.&lt;/p&gt;
