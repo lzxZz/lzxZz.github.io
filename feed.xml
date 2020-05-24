@@ -1,4 +1,494 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh"><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" hreflang="zh" /><updated>2020-05-04T16:19:45+08:00</updated><id>/feed.xml</id><title type="html">lzxZz's Blog</title><subtitle>野兽屈服于本能, 人类受控于理智&amp;nbsp;&amp;nbsp;&amp;nbsp;Beasts succumb to instinct, humans are controlled by mind</subtitle><author><name>lzxZz</name></author><entry><title type="html">lzxZz的时间管理秘籍</title><link href="/blog/2020/05/04/time-manager/" rel="alternate" type="text/html" title="lzxZz的时间管理秘籍" /><published>2020-05-04T00:00:00+08:00</published><updated>2020-05-04T00:00:00+08:00</updated><id>/blog/2020/05/04/time-manager</id><content type="html" xml:base="/blog/2020/05/04/time-manager/">&lt;blockquote&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh"><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" hreflang="zh" /><updated>2020-05-25T06:00:20+08:00</updated><id>/feed.xml</id><title type="html">lzxZz's Blog</title><subtitle>野兽屈服于本能, 人类受控于理智&amp;nbsp;&amp;nbsp;&amp;nbsp;Beasts succumb to instinct, humans are controlled by mind</subtitle><author><name>lzxZz</name></author><entry><title type="html">java字符串构造</title><link href="/blog/2020/05/25/java-string-constructor/" rel="alternate" type="text/html" title="java字符串构造" /><published>2020-05-25T00:00:00+08:00</published><updated>2020-05-25T00:00:00+08:00</updated><id>/blog/2020/05/25/java-string-constructor</id><content type="html" xml:base="/blog/2020/05/25/java-string-constructor/">&lt;blockquote&gt;
+  &lt;p&gt;介绍, 本文内容详细讲解了一道面试题&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;下面程序的运行结果是? 为什么?
+String str1 = “hello”;
+String str2 = “he”+new String(“llo”);
+String str3 = “he”+”llo”;
+System.err.println(str1== str2);
+System.err.println(str1 == str3);&lt;/p&gt;
+
+&lt;p&gt;这段代码涉及到的知识点为java中string的构造操作., 以及&lt;code class=&quot;highlighter-rouge&quot;&gt;==&lt;/code&gt;运算符.&lt;/p&gt;
+
+&lt;p&gt;首先介绍一下简单的&lt;code class=&quot;highlighter-rouge&quot;&gt;==&lt;/code&gt;吧, 
+对于基本数据类型(int, double, char)等判断的是值相等
+对于引用数据类型(所有java.object)的子类,判断的都是地址相等.&lt;/p&gt;
+
+&lt;p&gt;众所周知, java有一个字符串的常量池, 其中存储着一些字符串常量. 那么什么时候会使用字符串常量呢?&lt;/p&gt;
+
+&lt;p&gt;使用字符串字面量的时候会使用到字符串常量池, 而使用new的时候则会在堆中创建一个对象.&lt;/p&gt;
+
+&lt;p&gt;显然,str1引用了字符串常量池, 而str2引用的是堆中的对象. 即便str2是由一个字面量和一个对象组装出来的.&lt;/p&gt;
+
+&lt;p&gt;那么str3也应该是引用的字符串常量池.&lt;/p&gt;
+
+&lt;p&gt;在C++中, 不论多少个字符串字面量相加(使用&lt;code class=&quot;highlighter-rouge&quot;&gt;+&lt;/code&gt;连接), 编译器都会优化成一个字符串字面量. 那么Java呢?&lt;/p&gt;
+
+&lt;p&gt;首先我们来测试下面这段代码:&lt;/p&gt;
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Test1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;str1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;hello&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;下面是这段代码的反编译的代码&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Compiled from &quot;Test1.java&quot;
+public class Test1 {
+  public Test1();
+    Code:
+       0: aload_0
+       1: invokespecial #1                  // Method java/lang/Object.&quot;&amp;lt;init&amp;gt;&quot;:()V
+       4: return
+
+  public static void main(java.lang.String[]);
+    Code:
+       0: ldc           #2                  // String hello
+       2: astore_1
+       3: return
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;可以看到这个类中有两个方法, 第一个是构造哦函数, 这里我们不管. 第二个则是我们编写的测试代码.&lt;/p&gt;
+
+&lt;p&gt;其中涉及到了两个jvm指令,&lt;code class=&quot;highlighter-rouge&quot;&gt;ldc&lt;/code&gt;和&lt;code class=&quot;highlighter-rouge&quot;&gt;astore_1&lt;/code&gt;.
+&lt;code class=&quot;highlighter-rouge&quot;&gt;ldc&lt;/code&gt;用于将常量入栈
+&lt;code class=&quot;highlighter-rouge&quot;&gt;astore_1&lt;/code&gt;在索引为1的位置将第一个操作数出栈. 并入本地变量.
+上面的两条指令就是构造了一个常量然后存到第一个本地变量中.&lt;/p&gt;
+
+&lt;p&gt;这里&lt;code class=&quot;highlighter-rouge&quot;&gt;ldc&lt;/code&gt;将&lt;code class=&quot;highlighter-rouge&quot;&gt;hello&lt;/code&gt;压入栈中, 可以看到没有调用任何的方法.
+下面给出一个使用new构造字符串的例子.代码如下&lt;/p&gt;
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Test2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;str1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;hello&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;字节码代码如下(删去了构造函数等无关代码):&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public static void main(java.lang.String[]);
+  Code:
+     0: new           #2                  // class java/lang/String
+     3: dup
+     4: ldc           #3                  // String hello
+     6: invokespecial #4                  // Method java/langString.&quot;&amp;lt;init&amp;gt;&quot;:(Ljava/lang/String;)V
+     9: astore_1
+    10: return
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;这里多了好几条指令
+&lt;code class=&quot;highlighter-rouge&quot;&gt;new&lt;/code&gt;与编程语言中的 new 运算符类似，它根据传入的操作数所指定类型来创建对象&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;dup&lt;/code&gt;会复制顶部操作数的栈值，
+&lt;code class=&quot;highlighter-rouge&quot;&gt;invokespecial&lt;/code&gt; 调用方法, &lt;code class=&quot;highlighter-rouge&quot;&gt;invoke&lt;/code&gt;系列还有好几条指令.&lt;/p&gt;
+
+&lt;p&gt;可以看到, 首先还是先将&lt;code class=&quot;highlighter-rouge&quot;&gt;hello&lt;/code&gt;放到了常量池中. 然后在构造了一个对象. 
+下面使用代码打印一些地址来看看是否是一个在常量池, 一个在堆中., 代码如下:&lt;/p&gt;
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Test3&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;str1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;hello&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;str2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;hello&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;str3&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;hello&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+        &lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;identityHashCode&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;str1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
+        &lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;identityHashCode&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;str2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
+        &lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;identityHashCode&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;str3&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;java中输出对象的地址可以使用&lt;code class=&quot;highlighter-rouge&quot;&gt;hashCode()&lt;/code&gt;方法, 但是String重写了这个方法, 因此使用&lt;code class=&quot;highlighter-rouge&quot;&gt;System.identityHashCode(obj)&lt;/code&gt;来输出地址.
+程序的输出如下:&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;705927765
+366712642
+705927765
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;可以看到字面量的两个对象引用的是一个地址, 而new出来的对象引用的则是另一个地址.
+反编译出来的字节码如下:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  public static void main(java.lang.String[]);
+    Code:
+       0: ldc           #2                  // String hello
+       2: astore_1
+       3: new           #3                  // class java/lang/String
+       6: dup
+       7: ldc           #2                  // String hello
+       9: invokespecial #4                  // Method java/lang/String.&quot;&amp;lt;init&amp;gt;&quot;:(Ljava/lang/String;)V
+      12: astore_2
+      13: ldc           #2                  // String hello
+      15: astore_3
+      16: getstatic     #5                  // Field java/lang/System.out:Ljava/io/PrintStream;
+      19: aload_1
+      20: invokestatic  #6                  // Method java/lang/System.identityHashCode:(Ljava/lang/Object;)I
+      23: invokevirtual #7                  // Method java/io/PrintStream.println:(I)V
+      26: getstatic     #5                  // Field java/lang/System.out:Ljava/io/PrintStream;
+      29: aload_2
+      30: invokestatic  #6                  // Method java/lang/System.identityHashCode:(Ljava/lang/Object;)I
+      33: invokevirtual #7                  // Method java/io/PrintStream.println:(I)V
+      36: getstatic     #5                  // Field java/lang/System.out:Ljava/io/PrintStream;
+      39: aload_3
+      40: invokestatic  #6                  // Method java/lang/System.identityHashCode:(Ljava/lang/Object;)I
+      43: invokevirtual #7                  // Method java/io/PrintStream.println:(I)V
+      46: return
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;可以看到&lt;code class=&quot;highlighter-rouge&quot;&gt;0-2&lt;/code&gt;的代码和&lt;code class=&quot;highlighter-rouge&quot;&gt;13-15&lt;/code&gt;的代码完全一样, 这是两个&lt;code class=&quot;highlighter-rouge&quot;&gt;String str3 = &quot;hello&quot;;&lt;/code&gt;的构造, 而&lt;code class=&quot;highlighter-rouge&quot;&gt;3-12&lt;/code&gt;的代码则是和Test2中的字节码一致.&lt;/p&gt;
+
+&lt;p&gt;前面序号0-15都是构造对象的代码, 后面的都是打印地址的代码.&lt;/p&gt;
+
+&lt;p&gt;这说明&lt;code class=&quot;highlighter-rouge&quot;&gt;str1&lt;/code&gt;和&lt;code class=&quot;highlighter-rouge&quot;&gt;str3&lt;/code&gt;都是引用了常量区的字符串. 而&lt;code class=&quot;highlighter-rouge&quot;&gt;str2&lt;/code&gt;则是构造了新对象.&lt;/p&gt;
+
+&lt;p&gt;但是面试题中的&lt;code class=&quot;highlighter-rouge&quot;&gt;str3&lt;/code&gt;是使用&lt;code class=&quot;highlighter-rouge&quot;&gt;+&lt;/code&gt;构造的, 他会在常量区中构造&lt;code class=&quot;highlighter-rouge&quot;&gt;he&lt;/code&gt;和&lt;code class=&quot;highlighter-rouge&quot;&gt;llo&lt;/code&gt;两个对象吗? 下面我们进行一下测试:&lt;/p&gt;
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Test4&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;str1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;he&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;llo&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;字节码如下:&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  public static void main(java.lang.String[]);
+    Code:
+       0: ldc           #2                  // String hello
+       2: astore_1
+       3: return
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;这里面的代码和Test1中的代码是一样的. 
+这说明编译器也作了优化, 将两个字符串常量合并成了一个字符串常量.&lt;/p&gt;
+
+&lt;p&gt;到这里为止, 整个面试题的原因就彻底讲清楚了. 理由如下:
+&lt;strong&gt;java中&lt;code class=&quot;highlighter-rouge&quot;&gt;==&lt;/code&gt;操作的比较在面对引用对象&lt;code class=&quot;highlighter-rouge&quot;&gt;String&lt;/code&gt;的时候, 比较的是地址, 而str1和str3引用的都是同一个字符串常量区的对象,str2引用的是堆中的对象, 因此&lt;code class=&quot;highlighter-rouge&quot;&gt;str1==str3&lt;/code&gt;而&lt;code class=&quot;highlighter-rouge&quot;&gt;str1!=str2&lt;/code&gt;. 由于java编译器会将多个使用&lt;code class=&quot;highlighter-rouge&quot;&gt;+&lt;/code&gt;连接起来的字符串字面量优化为一个字符串字面量, 所以在class文件中, &lt;code class=&quot;highlighter-rouge&quot;&gt;str1&lt;/code&gt;的构造其实是和&lt;code class=&quot;highlighter-rouge&quot;&gt;str3&lt;/code&gt;的构造一样的.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;heading-延伸内容&quot;&gt;延伸内容.&lt;/h2&gt;
+
+&lt;p&gt;下面还有一点点关于&lt;code class=&quot;highlighter-rouge&quot;&gt;String str2 = “he”+new String(“llo”);&lt;/code&gt;的内容.&lt;/p&gt;
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Test5&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;str2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;he&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;llo&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;这段代码的字节码如下:&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  public static void main(java.lang.String[]);
+    Code:
+       0: new           #2                  // class java/lang/StringBuilder
+       3: dup
+       4: invokespecial #3                  // Method java/lang/StringBuilder.&quot;&amp;lt;init&amp;gt;&quot;:()V
+       7: ldc           #4                  // String he
+       9: invokevirtual #5                  // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+      12: new           #6                  // class java/lang/String
+      15: dup
+      16: ldc           #7                  // String llo
+      18: invokespecial #8                  // Method java/lang/String.&quot;&amp;lt;init&amp;gt;&quot;:(Ljava/lang/String;)V
+      21: invokevirtual #5                  // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+      24: invokevirtual #9                  // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+      27: astore_1
+      28: return
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;首先构造了一个&lt;code class=&quot;highlighter-rouge&quot;&gt;StringBuilder&lt;/code&gt;对象, 调用了&lt;code class=&quot;highlighter-rouge&quot;&gt;append&lt;/code&gt;方法, 将&lt;code class=&quot;highlighter-rouge&quot;&gt;he&lt;/code&gt;追加进去, 然后使用&lt;code class=&quot;highlighter-rouge&quot;&gt;llo&lt;/code&gt;构造了一个&lt;code class=&quot;highlighter-rouge&quot;&gt;String&lt;/code&gt;对象, 再次调用&lt;code class=&quot;highlighter-rouge&quot;&gt;append&lt;/code&gt;方法将&lt;code class=&quot;highlighter-rouge&quot;&gt;String&lt;/code&gt;对象追加进去. 最后调用&lt;code class=&quot;highlighter-rouge&quot;&gt;toString&lt;/code&gt;方法, 生成最终的字符串. 最后使用&lt;code class=&quot;highlighter-rouge&quot;&gt;astore_1&lt;/code&gt;赋值给本地变量.&lt;/p&gt;
+
+&lt;p&gt;这里我们猜测,String中的&lt;code class=&quot;highlighter-rouge&quot;&gt;+&lt;/code&gt;都是使用&lt;code class=&quot;highlighter-rouge&quot;&gt;StringBuilder&lt;/code&gt;的&lt;code class=&quot;highlighter-rouge&quot;&gt;append&lt;/code&gt;来完成的, 下面用代码来验证我们的猜想.&lt;/p&gt;
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Test6&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;str2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;he&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;llo&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;字节码如下:&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  public static void main(java.lang.String[]);
+    Code:
+       0: new           #2                  // class java/lang/StringBuilder
+       3: dup
+       4: invokespecial #3                  // Method java/lang/StringBuilder.&quot;&amp;lt;init&amp;gt;&quot;:()V
+       7: new           #4                  // class java/lang/String
+      10: dup
+      11: ldc           #5                  // String he
+      13: invokespecial #6                  // Method java/lang/String.&quot;&amp;lt;init&amp;gt;&quot;:(Ljava/lang/String;)V
+      16: invokevirtual #7                  // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+      19: new           #4                  // class java/lang/String
+      22: dup
+      23: ldc           #8                  // String llo
+      25: invokespecial #6                  // Method java/lang/String.&quot;&amp;lt;init&amp;gt;&quot;:(Ljava/lang/String;)V
+      28: invokevirtual #7                  // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+      31: invokevirtual #9                  // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+      34: astore_1
+      35: return
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;果然是使用&lt;code class=&quot;highlighter-rouge&quot;&gt;StringBuilder&lt;/code&gt;来完成的.&lt;/p&gt;
+
+&lt;p&gt;另外还需要注意的是对象创建的问题, 使用字面量作为String的构造会构造出来两个对象, 一个是new出来的堆中对象. 另一个则是会存储到字符串常量区中的字面量.&lt;/p&gt;
+
+&lt;h2 id=&quot;heading-线程安全问题&quot;&gt;线程安全问题&lt;/h2&gt;
+&lt;p&gt;但是&lt;code class=&quot;highlighter-rouge&quot;&gt;StringBuilder&lt;/code&gt;是一个线程不安全的类,  那么就有一个问题, 在多线程的环境下字符串的&lt;code class=&quot;highlighter-rouge&quot;&gt;+&lt;/code&gt;操作会隐式调用&lt;code class=&quot;highlighter-rouge&quot;&gt;StringBuilder&lt;/code&gt;的操作是否是线程安全的呢?&lt;/p&gt;
+
+&lt;p&gt;答案是线程安全的, &lt;code class=&quot;highlighter-rouge&quot;&gt;StringBuilder&lt;/code&gt;操作的对象是&lt;code class=&quot;highlighter-rouge&quot;&gt;String&lt;/code&gt;,是一个不可变的对象, 只能读不能修改, 而多线程的环境下字符串的&lt;code class=&quot;highlighter-rouge&quot;&gt;+&lt;/code&gt;操作也是单线程的, 不会出现跨线程现象, 没有线程A和线程B共同使用一个&lt;code class=&quot;highlighter-rouge&quot;&gt;StringBuilder&lt;/code&gt;. 多个线程同时访问&lt;code class=&quot;highlighter-rouge&quot;&gt;String&lt;/code&gt;是安全的.&lt;/p&gt;
+
+&lt;p&gt;到了这里, 线程安全的问题基本上已经回答完了. 但是还有一个东西是否会涉及到线程安全问题.&lt;/p&gt;
+
+&lt;p&gt;那就是字符串常量池的问题, 多个线程, 同时构造一个字符串常量, 想要放到字符串常量池中. 如果不做控制的话, 肯定就是线程不安全的. 至于jvm内部是否做了控制, 我不得而知.&lt;/p&gt;
+
+&lt;p&gt;同时字符串常量池还有一个问题,  由于多个变量同时引用一个对象, 那么一个线程如果对字符串字面量持有一个锁, 那么其他的线程对应的字符串变量都无法访问.&lt;/p&gt;</content><author><name>lzxZz</name></author><category term="[&quot;java&quot;, &quot;面试题&quot;]" /><category term="string" /><category term="==" /><category term="构造" /><summary type="html">介绍, 本文内容详细讲解了一道面试题</summary></entry><entry><title type="html">html登陆蒙板</title><link href="/blog/2020/05/20/html-login/" rel="alternate" type="text/html" title="html登陆蒙板" /><published>2020-05-20T00:00:00+08:00</published><updated>2020-05-20T00:00:00+08:00</updated><id>/blog/2020/05/20/html-login</id><content type="html" xml:base="/blog/2020/05/20/html-login/">&lt;p&gt;最近在写一个网站, 需要一个登录, 想把整个网站做成单页应用. 这就需要一个登陆蒙板.&lt;/p&gt;
+
+&lt;p&gt;在阅读了一些源码之后, 我发现大部分的实现原理都是先做一个登录的小框&lt;code class=&quot;highlighter-rouge&quot;&gt;display&lt;/code&gt;样式设置为&lt;code class=&quot;highlighter-rouge&quot;&gt;none&lt;/code&gt;, 然后登陆的时候改掉这个样式属性,变成&lt;code class=&quot;highlighter-rouge&quot;&gt;block&lt;/code&gt;, 来显示登录框.&lt;/p&gt;
+
+&lt;p&gt;为了确保登录框在其他内容的上方, 使用&lt;code class=&quot;highlighter-rouge&quot;&gt;z-index&lt;/code&gt;来设置登录框的z轴位置.&lt;/p&gt;
+
+&lt;p&gt;到了这一步基本上就是实现了. 但是还有一个问题, 没有蒙板, 除了登录框之外,页面上的其他元素一样能交互.&lt;/p&gt;
+
+&lt;p&gt;为了避免在登录期间和页面上其他元素的交互, 需要加上一个蒙板. 使用一个&lt;code class=&quot;highlighter-rouge&quot;&gt;div&lt;/code&gt;,将其宽高都设置为&lt;code class=&quot;highlighter-rouge&quot;&gt;100%&lt;/code&gt;,来充满整个浏览器. 同时设置&lt;code class=&quot;highlighter-rouge&quot;&gt;z-index&lt;/code&gt;比登录框略小.&lt;/p&gt;
+
+&lt;p&gt;写到这里, 我想起来, 没有必要单独做一个蒙板层, 直接吧登录框和蒙板放在一层里面, 这样就能避免设置两个&lt;code class=&quot;highlighter-rouge&quot;&gt;z-index&lt;/code&gt;的问题, 这两个&lt;code class=&quot;highlighter-rouge&quot;&gt;z-index&lt;/code&gt;还是互相耦合的.&lt;/p&gt;</content><author><name>lzxZz</name></author><category term="[&quot;html&quot;]" /><category term="蒙板" /><summary type="html">最近在写一个网站, 需要一个登录, 想把整个网站做成单页应用. 这就需要一个登陆蒙板.</summary></entry><entry><title type="html">spring boot系列 1.1 为什么需要spring boot</title><link href="/blog/2020/05/16/spring-boot-01-why/" rel="alternate" type="text/html" title="spring boot系列   1.1 为什么需要spring boot" /><published>2020-05-16T00:00:00+08:00</published><updated>2020-05-16T00:00:00+08:00</updated><id>/blog/2020/05/16/spring-boot-01-why</id><content type="html" xml:base="/blog/2020/05/16/spring-boot-01-why/">&lt;h1 id=&quot;heading-为什么需要spring-boot&quot;&gt;为什么需要spring boot&lt;/h1&gt;
+
+&lt;p&gt;spring boot诞生的原因十分的简单, 就是一句话&lt;strong&gt;天下苦spring久矣&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;spring框架无疑是一款优秀的框架, 统治了java后端绝大多数的应用场景. 但是spring也存在一个致命的问题:&lt;strong&gt;配置繁重&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;就算是使用spring mvc+spring开发一个hello world的web后端程序, 其配置极其繁重.&lt;/p&gt;
+
+&lt;p&gt;步骤如下:&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;首先是使用&lt;code class=&quot;highlighter-rouge&quot;&gt;maven&lt;/code&gt;创建一个web项目.&lt;/li&gt;
+  &lt;li&gt;然后引入对应的&lt;code class=&quot;highlighter-rouge&quot;&gt;spring&lt;/code&gt;和&lt;code class=&quot;highlighter-rouge&quot;&gt;spring mvc&lt;/code&gt;的依赖.&lt;/li&gt;
+  &lt;li&gt;在&lt;code class=&quot;highlighter-rouge&quot;&gt;/META-INF/web.xml&lt;/code&gt;中配置前端处理器&lt;code class=&quot;highlighter-rouge&quot;&gt;DispatcherServlet&lt;/code&gt;, 接管对应请求&lt;/li&gt;
+  &lt;li&gt;编写控制器类并使用注解将控制器加入到IOC容器中&lt;/li&gt;
+  &lt;li&gt;编写处理方法, 并使用&lt;code class=&quot;highlighter-rouge&quot;&gt;@RequestMapping&lt;/code&gt;映射请求&lt;/li&gt;
+  &lt;li&gt;编写&lt;code class=&quot;highlighter-rouge&quot;&gt;springmvc.xml&lt;/code&gt;配置文件, 配置&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;context:component-scan base-package=&quot;.com.study.hello&quot;&amp;gt;&amp;lt;/context:component-scan&amp;gt;&lt;/code&gt;启动包扫描, 来扫描到控制器&lt;/li&gt;
+  &lt;li&gt;启动mvc的注解驱动&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;mvc:annotation-driven/&amp;gt;&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;将&lt;code class=&quot;highlighter-rouge&quot;&gt;springmvc.xml&lt;/code&gt;添加到&lt;code class=&quot;highlighter-rouge&quot;&gt;web.xml&lt;/code&gt;的启动参数中, 来加载配置.&lt;/li&gt;
+  &lt;li&gt;编译程序并打war包&lt;/li&gt;
+  &lt;li&gt;将war包部署到tomcat等服务器中的webapps目录下&lt;/li&gt;
+  &lt;li&gt;启动tomcat服务器&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;完成了上述步骤之后, 一个hello world的程序才能够运行.&lt;/p&gt;
+
+&lt;p&gt;而在实际开发中, 配置远多于这个hello world程序.&lt;/p&gt;
+
+&lt;p&gt;但是spring boot诞生之后, 使用spring boot开发hello world程序就简单多了. 步骤如下:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;创建一个spring boot项目, 导入web的starter(使用IDE创建的时候能够直接选择)&lt;/li&gt;
+  &lt;li&gt;创建一个控制器类, 使用注解将控制器加入到IOC容器中
+ 需要注意的是. spring boot默认只会扫描&lt;code class=&quot;highlighter-rouge&quot;&gt;Application.java&lt;/code&gt;所在包及其自包下的类&lt;/li&gt;
+  &lt;li&gt;编写处理方法, 使用&lt;code class=&quot;highlighter-rouge&quot;&gt;@RequestMapping&lt;/code&gt;映射请求&lt;/li&gt;
+  &lt;li&gt;将项目作为一个普通java项目,编译运行&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;可以看到这一个项目并不需要我们做任何的配置, 也不需要tomcat等服务器参与.&lt;/p&gt;
+
+&lt;p&gt;下面就介绍一下什么是spring boot, 他是怎么做到这一切的.&lt;/p&gt;
+
+&lt;h1 id=&quot;heading-什么是spring-boot-以及spring-boot的优缺点在哪&quot;&gt;什么是spring boot, 以及spring boot的优缺点在哪?&lt;/h1&gt;
+&lt;p&gt;下面是wiki上对spring boot的介绍.&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;Spring Boot is Spring's convention-over-configuration solution for creating stand-alone, production-grade Spring-based Applications that you can &quot;just run&quot;.[23] It is preconfigured with the Spring team's &quot;opinionated view&quot; of the best configuration and use of the Spring platform and third-party libraries so you can get started with minimum fuss. Most Spring Boot applications need very little Spring configuration. Features:&lt;/p&gt;
+  &lt;ul&gt;
+    &lt;li&gt;Create stand-alone Spring applications&lt;/li&gt;
+    &lt;li&gt;Embed Tomcat or Jetty directly (no need to deploy WAR files)&lt;/li&gt;
+    &lt;li&gt;Provide opinionated 'starter' Project Object Models (POMs) to simplify your Maven configuration&lt;/li&gt;
+    &lt;li&gt;Automatically configure Spring whenever possible&lt;/li&gt;
+    &lt;li&gt;Provide production-ready features such as metrics, health checks and externalized configuration&lt;/li&gt;
+    &lt;li&gt;Absolutely no code generation and no requirement for XML configuration.&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;spring boot是对Spring的一个封装, spring团队预先配置了&quot;最佳属性&quot;的基于约定的配置解决方案.用于创建可以直接运行的,独立的,生产级别的基于spring的应用程序.(并非对wiki的翻译).&lt;/p&gt;
+
+&lt;p&gt;简单说, spring boot就是许多套面向不同应用场景的配置解决方案. spring团队面对不同场景做了一些预先的配置.&lt;/p&gt;
+
+&lt;p&gt;spring boot的特点如下:&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;独立的spring应用程序&lt;/li&gt;
+  &lt;li&gt;直接嵌入了tomcat或jetty等服务器, 不需要使用war包部署&lt;/li&gt;
+  &lt;li&gt;提供了一些&lt;code class=&quot;highlighter-rouge&quot;&gt;starter&lt;/code&gt;maven依赖, 来简化maven配置.&lt;/li&gt;
+  &lt;li&gt;尽可能的自动配置spring&lt;/li&gt;
+  &lt;li&gt;提供了生产功能,&lt;code class=&quot;highlighter-rouge&quot;&gt; metrics, health checks,externalized configuration&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;没有代码生成, 不需要xml配置.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;简单点说spring boot就是提供了&quot;一把梭&quot;的解决方案. 创建项目, 编写业务逻辑, 运行项目.&lt;/p&gt;
+
+&lt;p&gt;spring boot的缺点也十分明显,&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;首先就是笨重. spring框架本来就算是一个比较笨重的框架. 而spring boot的自动配置更加加剧了这一现象.
+ &lt;em&gt;spring boot的自动配置在了解了其内部机制之后, 许多不需要的组件是可以不加载的&lt;/em&gt;&lt;/li&gt;
+  &lt;li&gt;其二就是黑盒, 由于一切都自动化了, 新手在遇到框架出了问题的时候很难找到问题取修复. 
+ 众所周知, 目前的代码的结构都在趋向于小函数的调用, 这无疑加深了调用栈, 让理解代码变得弯弯绕绕.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;上述缺点是我从一个初学者出发的思考, 也参考了一些网络上的看法.&lt;/p&gt;
+
+&lt;p&gt;spring boot是什么, 重点关注starter即可. 这些starter就是spring boot提供的预先配置的场景. 下图是&lt;code class=&quot;highlighter-rouge&quot;&gt;spring-boot-web-starter&lt;/code&gt;的依赖图:
+&lt;img src=&quot;/images/springboot-webstarter.png&quot; alt=&quot;&quot; /&gt;
+图中从左往有的依赖分别是:&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;嵌入式&lt;code class=&quot;highlighter-rouge&quot;&gt;tomcat&lt;/code&gt;服务器&lt;/li&gt;
+  &lt;li&gt;处理json的依赖库&lt;/li&gt;
+  &lt;li&gt;spring-boot-stater
+ 其中包含了对日志的依赖&lt;code class=&quot;highlighter-rouge&quot;&gt;spring-boot-starter-logging&lt;/code&gt;和处理yaml文件的&lt;code class=&quot;highlighter-rouge&quot;&gt;snakeyaml&lt;/code&gt;, 以及spring boot的自动配置包&lt;/li&gt;
+  &lt;li&gt;数据校验的依赖&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;spring web&lt;/code&gt;和&lt;code class=&quot;highlighter-rouge&quot;&gt;spring webmvc&lt;/code&gt;以及&lt;code class=&quot;highlighter-rouge&quot;&gt;spring&lt;/code&gt;框架本身的依赖.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;其中spring boot的所有的自动化都是源于一个注解,&lt;code class=&quot;highlighter-rouge&quot;&gt;@SpringBootApplication&lt;/code&gt;, 详细内容这里不做叙述. 需要注意的是, 所有的自动配置的操作, 全部在这个包中可以找到.&lt;/p&gt;
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;package&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;org.springframework.boot.autoconfigure&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;java.lang.annotation.Documented&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;java.lang.annotation.ElementType&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;java.lang.annotation.Inherited&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;java.lang.annotation.Retention&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;java.lang.annotation.RetentionPolicy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;java.lang.annotation.Target&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;org.springframework.boot.SpringBootConfiguration&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;org.springframework.boot.context.TypeExcludeFilter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;org.springframework.context.annotation.ComponentScan&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;org.springframework.context.annotation.Configuration&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;org.springframework.context.annotation.FilterType&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;org.springframework.context.annotation.ComponentScan.Filter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;org.springframework.core.annotation.AliasFor&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;nd&quot;&gt;@Target&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;({&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;ElementType&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;TYPE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;})&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@Retention&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;RetentionPolicy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;RUNTIME&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@Documented&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@Inherited&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@SpringBootConfiguration&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@EnableAutoConfiguration&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@ComponentScan&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;excludeFilters&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;@Filter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;type&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;FilterType&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;CUSTOM&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;classes&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;TypeExcludeFilter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;nd&quot;&gt;@Filter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;type&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;FilterType&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;CUSTOM&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;classes&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;AutoConfigurationExcludeFilter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;)}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nd&quot;&gt;@interface&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;SpringBootApplication&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;至于spring boot的可配置内容, 建议在文档中查找, 而不是翻阅源码, &lt;a href=&quot;https://docs.spring.io/spring-boot/docs/2.3.0.RELEASE/reference/html/appendix-application-properties.html&quot;&gt;文档地址&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;heading-3-如何使用spring-boot&quot;&gt;3. 如何使用spring boot&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;注意: spring boot只是简化了spring的配置, 如果需要使用spring boot开发web系统, 那么spring和spring mvc的知识一样需要掌握&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;耦合只能从一个地方移动到另一个地方, 并不能完全消除
+spring boot的自动配置只是为一些配置项提供了常见的值, 并没有消除这些配置.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;本章介绍的内容有:&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;spring boot项目的创建, 基于IDEA&lt;/li&gt;
+  &lt;li&gt;如何编写一个简单的Hello  World程序.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;heading-31-idea中spring-boot项目的创建&quot;&gt;3.1 IDEA中spring boot项目的创建.&lt;/h2&gt;
+
+&lt;p&gt;首先启动IDEA, 并点击新建项目,如下图所示:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/springboot-create1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;在左侧选中&lt;code class=&quot;highlighter-rouge&quot;&gt;spring Initializr&lt;/code&gt;, 在右侧选择对应的jdk版本, 初始化服务器url选择默认的&lt;code class=&quot;highlighter-rouge&quot;&gt;start.spring.io&lt;/code&gt;即可, 点击next, 如下图所示:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/springboot-create2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;然后就是创建maven项目的一些id的输入. 这里自己设置即可. 我这里暂时不设置. 然后点击next, 如下图所示:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/springboot-create3.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;这里就是勾选spring boot的依赖项, 这里选中的依赖会自动的导入&lt;code class=&quot;highlighter-rouge&quot;&gt;pom.xml&lt;/code&gt;中&lt;/p&gt;
+
+&lt;p&gt;最上方有一个搜索框用于搜索依赖, 右边是spring boot的版本选择,&lt;/p&gt;
+
+&lt;p&gt;左边的框中是spring boot的依赖分类, 中间是对应分类中的依赖.&lt;/p&gt;
+
+&lt;p&gt;最右边显示的是选中的依赖. 依赖选择完毕之后,点击next, 结果如下图所示:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/springboot-create4.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;填写项目的名称和项目的地址, 然后点击finish就完成了项目的创建.
+下面有一些高级设置, 一般不建议修改.&lt;/p&gt;
+
+&lt;p&gt;创建好的项目如下图所示:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/springboot-create5.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;创建了两个文件,&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;DemoApplication.java&lt;/code&gt;
+ 这是spring boot的主配置类文件&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;application.properties&lt;/code&gt;
+ spring boot的配置文件&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;目前项目就能够直接运行了, IDEA中运行项目这里就不介绍了. 但是项目运行之后什么都没有, 就是一个空壳, 下面我们编写一个控制器, 写一个&lt;code class=&quot;highlighter-rouge&quot;&gt;localhost:8080/hello&lt;/code&gt;接口.代码如下:&lt;/p&gt;
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;package&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;com.example.demo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;org.springframework.stereotype.Controller&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;org.springframework.web.bind.annotation.RequestMapping&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;org.springframework.web.bind.annotation.ResponseBody&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;nd&quot;&gt;@Controller&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;HelloController&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;nd&quot;&gt;@ResponseBody&lt;/span&gt;
+    &lt;span class=&quot;nd&quot;&gt;@RequestMapping&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;hello&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;hello&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(){&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;hello&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;至此, 使用spring boot开发一个项目的内容就全部结束了&lt;/p&gt;</content><author><name>lzxZz</name></author><category term="[&quot;spring boot&quot;]" /><category term="spring boot" /><category term="教程" /><category term="java" /><category term="jawa" /><summary type="html">为什么需要spring boot</summary></entry><entry><title type="html">spring boot系列目录</title><link href="/blog/2020/05/16/spring-boot-overview/" rel="alternate" type="text/html" title="spring boot系列目录" /><published>2020-05-16T00:00:00+08:00</published><updated>2020-05-16T00:00:00+08:00</updated><id>/blog/2020/05/16/spring-boot-overview</id><content type="html" xml:base="/blog/2020/05/16/spring-boot-overview/">&lt;blockquote&gt;
+  &lt;p&gt;说明: 这是一份自学spring boot所产出的教程, 现给出目录.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h1 id=&quot;heading-1-spring-boot概述&quot;&gt;1. spring boot概述&lt;/h1&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;本章主要是介绍spring boot的一些基本概念&lt;/p&gt;
+  &lt;h2 id=&quot;heading-11-为什么需要spring-boot&quot;&gt;1.1 为什么需要spring boot?&lt;/h2&gt;
+  &lt;p&gt;&lt;a href=&quot;/springboot/intro.html&quot;&gt;文章链接&lt;/a&gt;
+&lt;strong&gt;1.1, 1.2 , 1.3合并到一篇文章中&lt;/strong&gt;&lt;/p&gt;
+  &lt;h2 id=&quot;heading-12-spring-boot是什么-有什么优缺点&quot;&gt;1.2 spring boot是什么? 有什么优缺点?&lt;/h2&gt;
+  &lt;p&gt;&lt;a href=&quot;/springboot/intro.html&quot;&gt;文章链接&lt;/a&gt;&lt;/p&gt;
+  &lt;h2 id=&quot;heading-13-怎么使用spring-boot&quot;&gt;1.3 怎么使用spring boot&lt;/h2&gt;
+  &lt;p&gt;&lt;a href=&quot;/springboot/intro.html&quot;&gt;文章链接&lt;/a&gt;&lt;/p&gt;
+  &lt;h2 id=&quot;heading-14-如何自主学习spring-boot&quot;&gt;1.4 如何自主学习spring boot&lt;/h2&gt;
+  &lt;h1 id=&quot;heading-2-spring-boot中的ioc&quot;&gt;2. spring boot中的IOC&lt;/h1&gt;
+  &lt;p&gt;本章介绍spring boot中如何使用spring的IOC技术&lt;/p&gt;
+  &lt;h2 id=&quot;heading-21-spring-boot中全注解的ioc&quot;&gt;2.1 spring boot中全注解的IOC&lt;/h2&gt;
+  &lt;h2 id=&quot;heading-22-spring-boot中复用xml配置&quot;&gt;2.2 spring boot中复用XML配置&lt;/h2&gt;
+  &lt;h1 id=&quot;heading-3-spring-boot中的aop&quot;&gt;3. spring boot中的AOP&lt;/h1&gt;
+  &lt;p&gt;本章介绍spring boot中如何使用spring的AOP技术&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;strong&gt;暂略&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;heading-4-spring-boot中的数据访问&quot;&gt;4. spring boot中的数据访问&lt;/h1&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;本章介绍spring boot中对数据库的访问&lt;/p&gt;
+  &lt;h2 id=&quot;heading-41-使用jdbctemplate访问数据库&quot;&gt;4.1 使用jdbcTemplate访问数据库&lt;/h2&gt;
+  &lt;h2 id=&quot;heading-42-使用mybaits框架访问数据库&quot;&gt;4.2 使用mybaits框架访问数据库&lt;/h2&gt;
+  &lt;h2 id=&quot;heading-43-使用redis加速数据访问&quot;&gt;4.3 使用redis加速数据访问&lt;/h2&gt;
+&lt;/blockquote&gt;
+
+&lt;h1 id=&quot;heading-5-spring-boot和spring-mvc的配合&quot;&gt;5. spring boot和spring mvc的配合&lt;/h1&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;本章介绍使用spring boot开发spring mvc应用的内容&lt;/p&gt;
+  &lt;h2 id=&quot;heading-51-在spring-boot中配置spring-mvc&quot;&gt;5.1 在spring boot中配置spring mvc&lt;/h2&gt;
+  &lt;h2 id=&quot;heading-52-基本的处理方法编写&quot;&gt;5.2 基本的处理方法编写&lt;/h2&gt;
+  &lt;h2 id=&quot;heading-53-自定义参数转换规则&quot;&gt;5.3 自定义参数转换规则&lt;/h2&gt;
+  &lt;h2 id=&quot;heading-54-视图和模板技术&quot;&gt;5.4 视图和模板技术&lt;/h2&gt;
+  &lt;h2 id=&quot;heading-55-文件上传&quot;&gt;5.5 文件上传&lt;/h2&gt;
+  &lt;h2 id=&quot;heading-56-拦截器&quot;&gt;5.6 拦截器&lt;/h2&gt;
+  &lt;h2 id=&quot;heading-57-国际化&quot;&gt;5.7 国际化&lt;/h2&gt;
+  &lt;h2 id=&quot;heading-58-杂项&quot;&gt;5.8 杂项&lt;/h2&gt;
+&lt;/blockquote&gt;
+
+&lt;h1 id=&quot;heading-6-spring-boot项目的运行&quot;&gt;6. spring boot项目的运行&lt;/h1&gt;
+
+&lt;h1 id=&quot;heading-7-杂项&quot;&gt;7. 杂项&lt;/h1&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;本章介绍一些零零碎碎, 不成系统的知识点.&lt;/p&gt;
+  &lt;h2 id=&quot;heading-71-spring-boot中的日志系统&quot;&gt;7.1 spring boot中的日志系统&lt;/h2&gt;
+  &lt;h2 id=&quot;heading-72-spring-boot中的自动配置&quot;&gt;7.2 spring boot中的自动配置&lt;/h2&gt;
+&lt;/blockquote&gt;</content><author><name>lzxZz</name></author><category term="[&quot;spring boot&quot;]" /><category term="spring boot" /><category term="教程" /><category term="目录" /><category term="java" /><category term="jawa" /><summary type="html">说明: 这是一份自学spring boot所产出的教程, 现给出目录.</summary></entry><entry><title type="html">lzxZz的时间管理秘籍</title><link href="/blog/2020/05/04/time-manager/" rel="alternate" type="text/html" title="lzxZz的时间管理秘籍" /><published>2020-05-04T00:00:00+08:00</published><updated>2020-05-04T00:00:00+08:00</updated><id>/blog/2020/05/04/time-manager</id><content type="html" xml:base="/blog/2020/05/04/time-manager/">&lt;blockquote&gt;
   &lt;p&gt;最近罗志祥的&quot;时间管理&quot;有一点火, 还获得了时间刺客的称号. 关于如何充分利用上这24小时, 我也有一点点心得体会.&lt;/p&gt;
 
   &lt;p&gt;先直接介绍方法吧, 方法很简单就一个字&lt;strong&gt;熬&lt;/strong&gt;, 硬熬, 困的时候熬一会, 困意很快就会过去. 实在顶不住的时候就睡觉. 只睡3-5小时左右.&lt;/p&gt;
@@ -276,27 +766,4 @@
 
 &lt;p&gt;接下来研究一下能不能仿照目前的分类, 做出来一个系列来. 某些文章单独的使用分类划分还是不太合适, 使用一個系列会比较好.&lt;/p&gt;
 
-&lt;p&gt;今天还弄好了基于&lt;code class=&quot;highlighter-rouge&quot;&gt;rake&lt;/code&gt;的新文章创建工具, 还做了一点小小的修改.&lt;/p&gt;</content><author><name>lzxZz</name></author><category term="other" /><summary type="html">自打上次要在简书写博客已经过去了半年了, 期间是基本上啥都没有写. 时隔半年,最终还是使用jekyll+githubpages搭建起来了博客. 使用的这个主题也还可以, 满足了我的几大要求: 按时间归类 支持分类和标签 支持搜索 支持发布时间, 支持最后修改时间, 使用laset_updated字段指定日期即可</summary></entry><entry><title type="html">习惯</title><link href="/blog/2020/04/04/habit/" rel="alternate" type="text/html" title="习惯" /><published>2020-04-04T00:00:00+08:00</published><updated>2020-04-04T00:00:00+08:00</updated><id>/blog/2020/04/04/habit</id><content type="html" xml:base="/blog/2020/04/04/habit/">&lt;h3 id=&quot;heading-习惯&quot;&gt;习惯&lt;/h3&gt;
-
-&lt;p&gt;我个人认为, 在个人成长方面最最最重要的就是习惯. 历来成功者莫不是在某一个或者某几个领域做到极致的人, 而习惯在其中就起到了至关重要的作用. 当然也有大毅力者, 强行控制自己做好做深一件事, 但是对于大多数人来说, 习惯性的做某件事才是更好的选择.&lt;/p&gt;
-
-&lt;p&gt;就赖床这一点而言, 许多的人都有赖床的习惯. 一方面是躺在床上确实舒服, 另一个则是习惯性的赖床. 不赖床真的有那么难吗? 起床是很简单的一件事, 但是对抗自己的习惯却是很难的一件事.&lt;/p&gt;
-
-&lt;p&gt;在&lt;em&gt;习惯的力量&lt;/em&gt;一书中, 习惯被解释为&quot;在触发习惯的事件发生后的一系列自动的活动&quot;.&lt;/p&gt;
-&lt;blockquote&gt;
-  &lt;p&gt;说出来你可能不信, 我的大脑有自己的想法. 我明明应该早点做完手头的工作, 写完老师布置的作业, 但是我就是习惯性的拖延, 好像有一种神秘的力量控制了我&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;这就是习惯的力量, 当触发器打开的时候, 你的行为就不在遵从你的理智了, 而是遵循你长久以来在大脑内养成的习惯这种特殊的&quot;本能&quot;.&lt;/p&gt;
-
-&lt;p&gt;在日常生活中习惯无处不在, 早上起床之后你做的第一件事是什么? 每天都是这样的吗? 穿衣服的时候你思考了先穿上衣还是先穿裤子了吗? 你考虑了先穿左腿还是先穿右腿了吗? 你使用筷子吃饭的时候需要思考怎么握住筷子,怎么使用筷子吗? 每天上班上学的路线你还需要计划吗?&lt;/p&gt;
-
-&lt;p&gt;这些都是习惯, 也是无关痛痒的习惯. 但是也有一些习惯对你影响较大.&lt;/p&gt;
-
-&lt;p&gt;当你完成了一件事情的一小个阶段的时候, 你的选择是什么? 是休息一下还是继续努力.
-当你面对一项可以推迟的任务时, 你手头又没有其他需要做的事情, 你是做完这个任务还是拖延?
-当你闲来无事的时候你选择的消遣方式是什么?&lt;/p&gt;
-
-&lt;p&gt;完成一个阶段任务的时候, 小小的休息一下绝对是合情合理的, 暫停一下给自己庆一下功总无可厚非吧. 但是离谱到我这样, 我写完一句话我都要去看看直播, 看看小说, 去IM群里吹一会, 做到干活5分钟摸鱼两小时, 我看是很难找出来几个了.&lt;/p&gt;
-
-&lt;p&gt;扯了这么多, 我也不知道我要表达的是什么, 这大概就是因为我从一开始就没有想好这篇文章要说什么吧. 希望我能一点点替换掉自己的那些拖后腿的习惯吧. 就从规律作息开始吧.&lt;/p&gt;</content><author><name>lzxZz</name></author><category term="[&quot;习惯&quot;, &quot;个人发展&quot;]" /><category term="习惯" /><category term="个人成长" /><category term="闲聊" /><summary type="html">习惯</summary></entry></feed>
+&lt;p&gt;今天还弄好了基于&lt;code class=&quot;highlighter-rouge&quot;&gt;rake&lt;/code&gt;的新文章创建工具, 还做了一点小小的修改.&lt;/p&gt;</content><author><name>lzxZz</name></author><category term="other" /><summary type="html">自打上次要在简书写博客已经过去了半年了, 期间是基本上啥都没有写. 时隔半年,最终还是使用jekyll+githubpages搭建起来了博客. 使用的这个主题也还可以, 满足了我的几大要求: 按时间归类 支持分类和标签 支持搜索 支持发布时间, 支持最后修改时间, 使用laset_updated字段指定日期即可</summary></entry></feed>
